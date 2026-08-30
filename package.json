@@ -1,8 +1,9 @@
 {
-  "name": "portfolio-worker-py",
+  "name": "portfolio-worker",
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "",
     "deploy": "uv run pywrangler deploy",
     "dev": "uv run pywrangler dev",
     "start": "uv run pywrangler dev"

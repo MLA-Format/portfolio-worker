@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "portfolio-worker-py",
+	"name": "portfolio-worker",
 	"main": "src/entry.py",
 	"compatibility_date": "2026-08-25",
 	"compatibility_flags": [
