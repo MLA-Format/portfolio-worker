@@ -5,8 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "workers-py>=1.17.0"
+    "workers-py>=1.9"
     ]
 
 [dependency-groups]
-dev = ["workers-py>=1.17.0", "workers-runtime-sdk"]
+dev = ["workers-py>=1.9", "workers-runtime-sdk"]
