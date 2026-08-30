@@ -1,12 +1,12 @@
 [project]
-name = "portfolio-worker-py"
+name = "portfolio-worker"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "workers-py"
+    "workers-py>=1.17.0"
     ]
 
 [dependency-groups]
-dev = ["workers-py", "workers-runtime-sdk"]
+dev = ["workers-py>=1.17.0", "workers-runtime-sdk"]
