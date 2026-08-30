@@ -12,8 +12,14 @@
 		"disable_python_external_sdk"
 	],
 	"observability": {
-		"enabled": true
-	}
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": false
+    }
+}
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
