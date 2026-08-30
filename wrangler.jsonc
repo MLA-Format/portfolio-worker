@@ -8,8 +8,7 @@
 	"main": "src/entry.py",
 	"compatibility_date": "2026-08-25",
 	"compatibility_flags": [
-		"python_workers",
-		"disable_python_external_sdk"
+		"python_workers"
 	],
 	"observability": {
     "logs": {
