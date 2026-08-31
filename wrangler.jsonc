@@ -18,7 +18,14 @@
     },
     "traces": {
       "enabled": false
-    }
+    },
+	"d1_databases": [
+		{
+		"binding": "PORTFOLIO_DB_BINDING",
+		"database_name": "portfolio_db",
+		"database_id": "6dd672e2-7aa8-483e-a78f-d36c1eb3dc72"
+		}
+	]
 }
 	/**
 	 * Smart Placement
