@@ -1,0 +1,12 @@
+services:
+  worker:
+    build: .
+    ports:
+      - "8787:8787"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - venv:/app/.venv
+
+volumes:
+  venv:
