@@ -1,0 +1,7 @@
+- [ ] Get skills API.
+- [ ] Get education API.
+- [ ] Get certifications API.
+- [ ] Get projects API.
+- [ ] Get code snippets API.
+    - [ ] Code snippets table.
+- [ ] Implement CORS logic to prevent external API calls.
