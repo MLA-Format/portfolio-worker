@@ -20,13 +20,20 @@
 		"enabled": false
 		}
 	},
-	"d1_databases": [
+	"hyperdrive": [
 		{
-		"binding": "PORTFOLIO_DB_BINDING",
-		"database_name": "portfolio_db",
-		"database_id": "6dd672e2-7aa8-483e-a78f-d36c1eb3dc72"
+		"binding": "HYPERDRIVE",
+		"id": "8f1fdb3b254648b59b94a6419dfc2813"
 		}
 	]
+	// ],
+	// "hyperdrive": [
+	// 	{
+	// 		"binding": "HYPERDRIVE",
+	// 		"id": "<YOUR_HYPERDRIVE_ID>",
+	// 		"localConnectionString": "<ENTER_LOCAL_CONNECTION_STRING_FOR_LOCAL_DEVELOPMENT_HERE>"
+	// 	}
+	// ]
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
