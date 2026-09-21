@@ -6,7 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "workers-py",
-    "fastapi"
+    "fastapi",
+    "asyncpg"
     ]
 
 [dependency-groups]
