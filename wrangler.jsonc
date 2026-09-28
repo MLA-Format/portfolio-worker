@@ -23,7 +23,8 @@
 	"hyperdrive": [
 		{
 		"binding": "HYPERDRIVE",
-		"id": "8f1fdb3b254648b59b94a6419dfc2813"
+		"id": "8f1fdb3b254648b59b94a6419dfc2813",
+		"localConnectionString": "postgresql://postgres:postgres@postgres:5432/portfolio_dev"
 		}
 	]
 	// ],

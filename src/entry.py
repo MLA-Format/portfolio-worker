@@ -22,26 +22,16 @@ app = FastAPI()
 async def root():
     return "API in development."
 
-# @app.get("/sql_test")
-# async def sql_test(req: Request):
-#     env = req.scope["env"]
+@app.get("/skills")
+async def get_skills(req: Request) -> dict:
+    raise HTTPException(status_code=501, detail="Awaiting implementation.")
 
-#     try:
-#         hyperdrive = env.HYPERDRIVE
+@app.get("/contacts")
+async def get_contacts(req: Request) -> dict:
+    raise HTTPException(status_code=501, detail="Awaiting implementation.")
 
-#         db_conn = await asyncpg.connect(
-#             host=hyperdrive.host,
-#             port=int(hyperdrive.port),
-#             user=hyperdrive.user,
-#             password=hyperdrive.password,
-#             database=hyperdrive.database,
-#             ssl=False,
-#         )
-
-#         db_res = await db_conn.fetch("SELECT * FROM skills")
-
-#         return [dict(row) for row in db_res]
-#     finally:
-#         await db_conn.close()
+@app.get("/education")
+async def get_education(req: Request) -> dict:
+    raise HTTPException(status_code=501, detail="Awaiting implementation.")
 
 Default = asgi.entrypoint(app)

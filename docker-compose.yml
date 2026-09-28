@@ -8,5 +8,22 @@ services:
       - /app/node_modules
       - venv:/app/.venv
 
+  postgres:
+      image: postgres:17
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: portfolio_dev
+      ports:
+        - "5433:5432"
+      volumes:
+        - pgdata:/var/lib/postgresql/data
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres -d portfolio_dev"]
+        interval: 2s
+        timeout: 3s
+        retries: 10
+
 volumes:
   venv:
+  pgdata:
