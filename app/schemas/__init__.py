@@ -1,3 +1,3 @@
-from .schemas import SkillOut, ContactOut, EducationOut
+from .schemas import SkillOut, ContactOut, EducationOut, GeneralOut
 
-__all__ = ["SkillOut", "ContactOut", "EducationOut"]
+__all__ = ["SkillOut", "ContactOut", "EducationOut", "GeneralOut"]

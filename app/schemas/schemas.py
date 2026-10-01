@@ -21,3 +21,6 @@ class EducationOut(BaseModel):
     start_date: date
     end_date: date | None
     image: str | None
+
+class GeneralOut(BaseModel):
+    about_me: str

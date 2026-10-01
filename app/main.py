@@ -3,10 +3,13 @@ from fastapi import FastAPI, Request
 from workers import asgi
 import asyncpg
 
-# Custom module imports.
-from schemas import SkillOut, ContactOut, EducationOut
+# Module imports.
+from routers import router
 
 app = FastAPI()
+app.include_router(router)
+
+Default = asgi.entrypoint(app)
 
 # @app.get("/")
 # async def root():
@@ -21,21 +24,3 @@ app = FastAPI()
 #     except Exception as e:
 #         return {"message": "Database query failed",
 #                 "error": str(e)}
-
-@app.get("/")
-async def root():
-    return "API in development."
-
-@app.get("/skills")
-async def get_skills(req: Request) -> list[SkillOut]:
-    raise HTTPException(status_code=501, detail="Awaiting implementation.")
-
-@app.get("/contacts")
-async def get_contacts(req: Request) -> list[ContactOut]:
-    raise HTTPException(status_code=501, detail="Awaiting implementation.")
-
-@app.get("/education")
-async def get_education(req: Request) -> list[EducationOut]:
-    raise HTTPException(status_code=501, detail="Awaiting implementation.")
-
-Default = asgi.entrypoint(app)
