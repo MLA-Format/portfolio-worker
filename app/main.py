@@ -1,6 +1,10 @@
+# Library imports.
 from fastapi import FastAPI, Request
 from workers import asgi
 import asyncpg
+
+# Custom module imports.
+from schemas import SkillOut, ContactOut, EducationOut
 
 app = FastAPI()
 
@@ -23,15 +27,15 @@ async def root():
     return "API in development."
 
 @app.get("/skills")
-async def get_skills(req: Request) -> dict:
+async def get_skills(req: Request) -> list[SkillOut]:
     raise HTTPException(status_code=501, detail="Awaiting implementation.")
 
 @app.get("/contacts")
-async def get_contacts(req: Request) -> dict:
+async def get_contacts(req: Request) -> list[ContactOut]:
     raise HTTPException(status_code=501, detail="Awaiting implementation.")
 
 @app.get("/education")
-async def get_education(req: Request) -> dict:
+async def get_education(req: Request) -> list[EducationOut]:
     raise HTTPException(status_code=501, detail="Awaiting implementation.")
 
 Default = asgi.entrypoint(app)

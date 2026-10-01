@@ -1,22 +1,21 @@
-from fastapi import FastAPI
 from pydantic import BaseModel
 from datetime import date
 
-class Skill(BaseModel):
+class SkillOut(BaseModel):
     name: str
     children: list["Skill"] | None
     priority: int | None
     icon: str | None
 
-class Contacts(BaseModel):
+class ContactOut(BaseModel):
     name: str
     value: str
     icon: str | None
     link: str | None
     priority: int | None
-    show_in_header | None
+    show_in_header: bool | None
 
-class Education(BaseModel):
+class EducationOut(BaseModel):
     school: str
     degree: str
     start_date: date
