@@ -1,4 +1,4 @@
-- [ ] Get skills API.
+- [Y] Get skills API.
 - [ ] Get education API.
 - [ ] Get certifications API.
 - [ ] Get projects API.
