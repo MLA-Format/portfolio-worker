@@ -1,5 +1,5 @@
 # Library imports.
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 
 # Custom module imports.
 from schemas import SkillOut, ContactOut, EducationOut, GeneralOut
