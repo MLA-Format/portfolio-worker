@@ -11,9 +11,8 @@ router = APIRouter()
 async def root() -> GeneralOut:
     return GeneralOut(about_me="API in development.")
 
-# -> list[SkillOut]
 @router.get("/skills")
-async def get_skills(req: Request):
+async def get_skills(req: Request) -> list[SkillOut]:
     return await db_get_skills(req.scope["env"])
 
 @router.get("/contacts")
