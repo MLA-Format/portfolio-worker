@@ -3,9 +3,17 @@ from datetime import date
 
 class SkillOut(BaseModel):
     name: str
-    children: list["Skill"] | None
+    children: list["ChildSkillOut"] | None
     priority: int | None
-    icon: str | None
+    # icon: str | None
+    id: int
+
+class ChildSkillOut(BaseModel):
+    name: str
+    priority: int | None
+    # icon: str | None
+    id: int
+
 
 class ContactOut(BaseModel):
     name: str
