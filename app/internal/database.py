@@ -55,3 +55,25 @@ async def db_get_skills(env):
         return
     finally:
         await connection.close()
+
+async def db_get_contacts(env):
+    """
+    This function will return a list of all contacts in the database.
+    """
+    connection = await get_connection(env.HYPERDRIVE)
+
+    try:
+        # Get all contacts.
+        contacts = await connection.fetch(
+            "SELECT contacts.name as name, contacts.value as value, " \
+            "contacts.icon as icon, contacts.link as link, contacts.priority as priority, "
+            "contacts.show_in_header as show_in_header FROM contacts"
+        )
+
+        return [dict(contact) for contact in contacts]
+
+    except Exception as error:
+        logger.exception(f"Failed to fetch skills: {error}")
+        return
+    finally:
+        await connection.close()
