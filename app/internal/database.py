@@ -78,7 +78,7 @@ async def db_get_contacts(env):
     finally:
         await connection.close()
 
-async def db_get_edu(env):
+async def db_get_education(env):
     """
     This function will return a list of all related educational institutions.
     """

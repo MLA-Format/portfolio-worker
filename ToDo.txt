@@ -1,6 +1,6 @@
 - [Y] Get skills API.
 - [Y] Get contacts API.
-- [ ] Get education API.
+- [Y] Get education API.
 - [ ] Get projects API.
 - [ ] Get code snippets API.
     - [ ] Code snippets table.
