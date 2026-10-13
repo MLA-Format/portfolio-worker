@@ -5,3 +5,6 @@
 - [ ] Get code snippets API.
     - [ ] Code snippets table.
 - [ ] Implement CORS logic to prevent external API calls.
+
+Bug fixes:
+- [ ] Instead of returning blank, raise HTTP exceptions.

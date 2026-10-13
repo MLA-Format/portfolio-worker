@@ -77,3 +77,25 @@ async def db_get_contacts(env):
         return
     finally:
         await connection.close()
+
+async def db_get_edu(env):
+    """
+    This function will return a list of all related educational institutions.
+    """
+    connection = await get_connection(env.HYPERDRIVE)
+
+    try:
+        # Get all contacts.
+        schools = await connection.fetch(
+            "SELECT education.school as school, education.degree as degree, " \
+            "education.start_date as start_date, education.end_date as end_date, " \
+            "education.image as image FROM education"
+        )
+
+        return [dict(school) for school in schools]
+
+    except Exception as error:
+        logger.exception(f"Failed to fetch skills: {error}")
+        return
+    finally:
+        await connection.close()
