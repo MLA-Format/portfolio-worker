@@ -1,10 +1,11 @@
 - [Y] Get skills API.
 - [Y] Get contacts API.
 - [Y] Get education API.
-- [ ] Get projects API.
+- [Y] Get projects API.
 - [ ] Get code snippets API.
     - [ ] Code snippets table.
 - [ ] Implement CORS logic to prevent external API calls.
 
 Bug fixes:
 - [ ] Instead of returning blank, raise HTTP exceptions.
+- [ ] Use order in all SQL statements for priorities.
