@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.get("/")
 async def root() -> GeneralOut:
-    return GeneralOut(about_me="API in development.")
+    return GeneralOut(message="API in development.")
 
 
 @router.get("/skills")

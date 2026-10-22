@@ -77,4 +77,4 @@ class ExperienceOut(BaseModel):
 
 
 class GeneralOut(BaseModel):
-    about_me: str
+    message: str
