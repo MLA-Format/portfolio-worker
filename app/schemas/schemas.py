@@ -2,12 +2,14 @@ from pydantic import BaseModel
 from datetime import date
 from typing import Literal
 
+
 class SkillOut(BaseModel):
     name: str
     children: list["ChildSkillOut"] | None
     priority: int | None
     icon: str | None
     id: int
+
 
 class ChildSkillOut(BaseModel):
     name: str
@@ -23,6 +25,7 @@ class ContactOut(BaseModel):
     link: str | None
     priority: int | None
     show_in_header: bool | None
+
 
 class EducationOut(BaseModel):
     school: str

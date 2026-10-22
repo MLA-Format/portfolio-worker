@@ -7,6 +7,7 @@ from typing import Any
 # Get global logger.
 logger = logging.getLogger(__name__)
 
+
 async def get_connection(hyperdrive: Any) -> asyncpg.Connection:
     try:
         connection = await asyncpg.connect(
@@ -19,9 +20,11 @@ async def get_connection(hyperdrive: Any) -> asyncpg.Connection:
         )
     except Exception:
         logger.exception("Failed to connect to the database.")
-        raise HTTPException(status_code=500, detail="Failed to connect to the database.")
+        raise HTTPException(
+            status_code=500, detail="Failed to connect to the database.")
 
     return connection
+
 
 async def db_get_skills(env: Any) -> list[dict[str, Any]]:
     """
@@ -55,6 +58,7 @@ async def db_get_skills(env: Any) -> list[dict[str, Any]]:
     finally:
         await connection.close()
 
+
 async def db_get_contacts(env: Any) -> list[dict[str, Any]]:
     """
     Return all general contacts, ordered by priority.
@@ -75,9 +79,11 @@ async def db_get_contacts(env: Any) -> list[dict[str, Any]]:
         return [dict(contact) for contact in contacts]
     except Exception:
         logger.exception("Failed to fetch contacts.")
-        raise HTTPException(status_code=500, detail="Failed to fetch contacts.")
+        raise HTTPException(
+            status_code=500, detail="Failed to fetch contacts.")
     finally:
         await connection.close()
+
 
 async def db_get_education(env: Any) -> list[dict[str, Any]]:
     """
@@ -97,7 +103,8 @@ async def db_get_education(env: Any) -> list[dict[str, Any]]:
         return [dict(school) for school in schools]
     except Exception:
         logger.exception("Failed to fetch education.")
-        raise HTTPException(status_code=500, detail="Failed to fetch education.")
+        raise HTTPException(
+            status_code=500, detail="Failed to fetch education.")
     finally:
         await connection.close()
 
@@ -146,12 +153,14 @@ async def db_get_projects(env: Any) -> list[dict[str, Any]]:
             project_values[skill["project_id"]]["skills"].append(dict(skill))
 
         for contact in contacts:
-            project_values[contact["project_id"]]["contacts"].append(dict(contact))
+            project_values[contact["project_id"]
+                           ]["contacts"].append(dict(contact))
 
         return list(project_values.values())
     except Exception:
         logger.exception("Failed to fetch projects.")
-        raise HTTPException(status_code=500, detail="Failed to fetch projects.")
+        raise HTTPException(
+            status_code=500, detail="Failed to fetch projects.")
     finally:
         await connection.close()
 
@@ -176,6 +185,7 @@ async def db_get_experience(env: Any) -> list[dict[str, Any]]:
         return [dict(job) for job in experience]
     except Exception:
         logger.exception("Failed to fetch experience.")
-        raise HTTPException(status_code=500, detail="Failed to fetch experience.")
+        raise HTTPException(
+            status_code=500, detail="Failed to fetch experience.")
     finally:
         await connection.close()
