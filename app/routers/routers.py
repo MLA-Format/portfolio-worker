@@ -2,8 +2,8 @@
 from fastapi import APIRouter, Request
 
 # Custom module imports.
-from schemas import SkillOut, ContactOut, EducationOut, GeneralOut
-from internal import db_get_skills, db_get_contacts, db_get_education
+from schemas import SkillOut, ContactOut, EducationOut, GeneralOut, ProjectOut
+from internal import db_get_skills, db_get_contacts, db_get_education, db_get_projects
 
 router = APIRouter()
 
@@ -22,3 +22,8 @@ async def get_contacts(req: Request) -> list[ContactOut]:
 @router.get("/education")
 async def get_education(req: Request) -> list[EducationOut]:
     return await db_get_education(req.scope["env"])
+
+
+@router.get("/projects")
+async def get_projects(req: Request) -> list[ProjectOut]:
+    return await db_get_projects(req.scope["env"])

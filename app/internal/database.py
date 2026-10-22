@@ -5,7 +5,7 @@ import logging
 # Get global logger.
 logger = logging.getLogger(__name__)
 
-async def get_connection(hyperdrive) -> asyngpg.Connection:
+async def get_connection(hyperdrive) -> asyncpg.Connection:
     connection = await asyncpg.connect(
         host=hyperdrive.host,
         port=int(hyperdrive.port),
@@ -87,8 +87,8 @@ async def db_get_education(env):
     try:
         # Get all contacts.
         schools = await connection.fetch(
-            "SELECT education.school as school, education.degree as degree, " \
-            "education.start_date as start_date, education.end_date as end_date, " \
+            "SELECT education.school as school, education.degree as degree, "
+            "education.start_date as start_date, education.end_date as end_date, "
             "education.image as image FROM education"
         )
 
@@ -97,5 +97,79 @@ async def db_get_education(env):
     except Exception as error:
         logger.exception(f"Failed to fetch skills: {error}")
         return
+    finally:
+        await connection.close()
+
+
+async def db_get_projects(env):
+    """
+    Return all projects with their linked skills and optional URL contacts.
+    """
+    connection = await get_connection(env.HYPERDRIVE)
+
+    try:
+        projects = await connection.fetch(
+            "SELECT projects.id as id, projects.name as name, "
+            "projects.start_date as start_date, projects.end_date as end_date, "
+            "projects.description as description, projects.image as image, "
+            "projects.priority as priority FROM projects "
+            "ORDER BY projects.priority NULLS LAST, projects.id"
+        )
+
+        skills = await connection.fetch(
+            "SELECT project_skills.project_id as project_id, skills.id as id, "
+            "skills.name as name, skills.priority as priority, skills.icon as icon "
+            "FROM project_skills JOIN skills "
+            "ON skills.id = project_skills.skill_id "
+            "ORDER BY project_skills.project_id, skills.priority NULLS LAST, skills.id"
+        )
+
+        contacts = await connection.fetch(
+            "SELECT project_contacts.project_id as project_id, contacts.id as id, "
+            "project_contacts.contact_type as type, contacts.name as name, "
+            "contacts.value as value, contacts.icon as icon, contacts.link as link, "
+            "contacts.priority as priority, contacts.show_in_header as show_in_header "
+            "FROM project_contacts JOIN contacts "
+            "ON contacts.id = project_contacts.contact_id "
+            "ORDER BY project_contacts.project_id, project_contacts.contact_type"
+        )
+
+        project_values = {
+            project["id"]: {
+                **dict(project),
+                "skills": [],
+                "contacts": [],
+            }
+            for project in projects
+        }
+
+        for skill in skills:
+            project_values[skill["project_id"]]["skills"].append(
+                {
+                    "id": skill["id"],
+                    "name": skill["name"],
+                    "priority": skill["priority"],
+                    "icon": skill["icon"],
+                }
+            )
+
+        for contact in contacts:
+            project_values[contact["project_id"]]["contacts"].append(
+                {
+                    "id": contact["id"],
+                    "type": contact["type"],
+                    "name": contact["name"],
+                    "value": contact["value"],
+                    "icon": contact["icon"],
+                    "link": contact["link"],
+                    "priority": contact["priority"],
+                    "show_in_header": contact["show_in_header"],
+                }
+            )
+
+        return list(project_values.values())
+    except Exception as error:
+        logger.exception(f"Failed to fetch projects: {error}")
+        raise
     finally:
         await connection.close()
