@@ -44,8 +44,8 @@ async def db_get_skills(env: Any) -> list[dict[str, Any]]:
                 parents[skill["parent_id"]]["children"].append(dict(skill))
 
         return list(parents.values())
-    except Exception as error:
-        logger.exception(f"Failed to fetch skills: {error}")
+    except Exception:
+        logger.exception("Failed to fetch skills.")
         raise
     finally:
         await connection.close()
@@ -68,8 +68,8 @@ async def db_get_contacts(env: Any) -> list[dict[str, Any]]:
         )
 
         return [dict(contact) for contact in contacts]
-    except Exception as error:
-        logger.exception(f"Failed to fetch contacts: {error}")
+    except Exception:
+        logger.exception("Failed to fetch contacts.")
         raise
     finally:
         await connection.close()
@@ -90,8 +90,8 @@ async def db_get_education(env: Any) -> list[dict[str, Any]]:
         )
 
         return [dict(school) for school in schools]
-    except Exception as error:
-        logger.exception(f"Failed to fetch education: {error}")
+    except Exception:
+        logger.exception("Failed to fetch education.")
         raise
     finally:
         await connection.close()
@@ -144,8 +144,8 @@ async def db_get_projects(env: Any) -> list[dict[str, Any]]:
             project_values[contact["project_id"]]["contacts"].append(dict(contact))
 
         return list(project_values.values())
-    except Exception as error:
-        logger.exception(f"Failed to fetch projects: {error}")
+    except Exception:
+        logger.exception("Failed to fetch projects.")
         raise
     finally:
         await connection.close()
@@ -167,8 +167,8 @@ async def db_get_snippets(env: Any) -> list[dict[str, Any]]:
         )
 
         return [dict(snippet) for snippet in snippets]
-    except Exception as error:
-        logger.exception(f"Failed to fetch snippets: {error}")
+    except Exception:
+        logger.exception("Failed to fetch snippets.")
         raise
     finally:
         await connection.close()
