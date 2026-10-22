@@ -2,10 +2,9 @@
 - [Y] Get contacts API.
 - [Y] Get education API.
 - [Y] Get projects API.
-- [ ] Get code snippets API.
-    - [ ] Code snippets table.
 - [ ] Implement CORS logic to prevent external API calls.
+- [ ] Look into enabling docs feature of FastAPI.
 
 Bug fixes:
-- [ ] Instead of returning blank, raise HTTP exceptions.
-- [ ] Use order in all SQL statements for priorities.
+- [Y] Instead of returning blank, raise HTTP exceptions.
+- [Y] Use order in all SQL statements for priorities.
