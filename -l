@@ -1,0 +1,36 @@
+* [33m1db7b3c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msmallTweaks[m[33m, [m[1;31morigin/smallTweaks[m[33m)[m Removed duplicate error logging.
+* [33m9736e36[m Modified db functions to reduce worker computation, update comments and loggers.
+* [33mae7fe37[m[33m ([m[1;31morigin/getCodeSnippetsApi[m[33m, [m[1;32mgetCodeSnippetsApi[m[33m)[m Added get code snippets api.
+* [33m38178e7[m[33m ([m[1;31morigin/getProjectsApi[m[33m, [m[1;32mgetProjectsApi[m[33m)[m ToDo.txt update.
+* [33m669a9f6[m Added projects route and backend logic.
+* [33m57d30b3[m[33m ([m[1;31morigin/getEducationApi[m[33m, [m[1;32mgetEducationApi[m[33m)[m Added route logic to fetch education information.
+* [33mf7638d7[m Added function to fetch education information from the db.
+* [33m33b7dc7[m[33m ([m[1;31morigin/getContactsApi[m[33m, [m[1;32mgetContactsApi[m[33m)[m Updated ToDo.txt.
+* [33m7bed7e4[m Added logic to route to handle retrieving all contact information.
+* [33m7f10122[m[33m ([m[1;31morigin/getSkillsApi[m[33m, [m[1;32mgetSkillsApi[m[33m)[m Update ToDo.txt.
+* [33m597d322[m Added back return class, resolved small bugs.
+* [33mb4872c7[m Added method to get skills and children one level down.
+* [33m89fb778[m Added get_connection function, added query to get top level parent skills.
+* [33md085593[m Implemented routes folder. Added internal folder.
+* [33m6dd1a7c[m Implemented schemas for responses.
+* [33m80e66d6[m Added models for API responses.
+* [33m7e9193f[m Modified wrangler config and moving to more standard project tree format.
+* [33mb934211[m Added route prototypes.
+* [33m8c0b167[m Hyperdrive + Postgres testing complete and functional.
+* [33me7ba159[m Testing Hyperdrive implementation.
+* [33mcf5a9a6[m Testing Hyperdrive implementation.
+* [33ma5f78ad[m Moved from D1 to Hyperdrive with Postgres.
+* [33m1c32bfc[m Added todo; removed live SQL query api.
+* [33m067a16f[m SQL test route now returns only sql query results.
+* [33m463869e[m Sql test route complete.
+* [33mbd13b93[m Added D1 connection for portfolio database.
+* [33m920d675[m Added workers default entry point.
+* [33m9cd1f91[m Moved to fastapi.
+* [33mab7a30c[m Moved back to disable external sdk - version change failed.
+* [33m5fc2e04[m Moved worker version to supported version to fix deployment issue.
+* [33m914fe9f[m Fixed naming inconsistency and resolved deployment bug properly.
+* [33m21be353[m Fixed naming inconsistency and resolved deployment bug properly.
+* [33m854d127[m Added worker logging.
+* [33md01ff86[m Added disable external sdk for python flag.
+* [33m7c0a4cb[m Fix for naming issues and fixed dependency issue.
+* [33m9b4400c[m[33m ([m[1;31morigin/master[m[33m)[m Initial commit (by create-cloudflare CLI)
