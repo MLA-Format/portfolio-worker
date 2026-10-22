@@ -5,7 +5,7 @@ from .schemas import (
     ProjectContactOut,
     ProjectOut,
     ProjectSkillOut,
-    SnippetOut,
+    ExperienceOut,
     GeneralOut,
 )
 
@@ -16,6 +16,6 @@ __all__ = [
     "ProjectContactOut",
     "ProjectOut",
     "ProjectSkillOut",
-    "SnippetOut",
+    "ExperienceOut",
     "GeneralOut",
 ]

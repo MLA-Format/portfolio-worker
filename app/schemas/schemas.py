@@ -6,13 +6,13 @@ class SkillOut(BaseModel):
     name: str
     children: list["ChildSkillOut"] | None
     priority: int | None
-    # icon: str | None
+    icon: str | None
     id: int
 
 class ChildSkillOut(BaseModel):
     name: str
     priority: int | None
-    # icon: str | None
+    icon: str | None
     id: int
 
 
@@ -62,11 +62,14 @@ class ProjectOut(BaseModel):
     contacts: list[ProjectContactOut]
 
 
-class SnippetOut(BaseModel):
+class ExperienceOut(BaseModel):
     id: int
     name: str
-    snippet_path: str
-    language: str
+    title: str
+    icon: str | None
+    start_date: date
+    end_date: date | None
+    bulleted_description: list[str]
     priority: int | None
 
 

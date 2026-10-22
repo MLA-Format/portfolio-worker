@@ -1,20 +1,25 @@
 # Library imports.
 import asyncpg
 import logging
+from fastapi import HTTPException
 from typing import Any
 
 # Get global logger.
 logger = logging.getLogger(__name__)
 
 async def get_connection(hyperdrive: Any) -> asyncpg.Connection:
-    connection = await asyncpg.connect(
-        host=hyperdrive.host,
-        port=int(hyperdrive.port),
-        user=hyperdrive.user,
-        password=hyperdrive.password,
-        database=hyperdrive.database,
-        ssl=False,
-    )
+    try:
+        connection = await asyncpg.connect(
+            host=hyperdrive.host,
+            port=int(hyperdrive.port),
+            user=hyperdrive.user,
+            password=hyperdrive.password,
+            database=hyperdrive.database,
+            ssl=False,
+        )
+    except Exception:
+        logger.exception("Failed to connect to the database.")
+        raise HTTPException(status_code=500, detail="Failed to connect to the database.")
 
     return connection
 
@@ -29,7 +34,7 @@ async def db_get_skills(env: Any) -> list[dict[str, Any]]:
         # Get all skills in one query, then group children under their parents.
         skills = await connection.fetch(
             "SELECT skills.id as id, skills.name as name, skills.priority as priority, "
-            "skills.parent_id as parent_id FROM skills "
+            "skills.icon as icon, skills.parent_id as parent_id FROM skills "
             "ORDER BY skills.priority, skills.id"
         )
 
@@ -46,7 +51,7 @@ async def db_get_skills(env: Any) -> list[dict[str, Any]]:
         return list(parents.values())
     except Exception:
         logger.exception("Failed to fetch skills.")
-        raise
+        raise HTTPException(status_code=500, detail="Failed to fetch skills.")
     finally:
         await connection.close()
 
@@ -70,7 +75,7 @@ async def db_get_contacts(env: Any) -> list[dict[str, Any]]:
         return [dict(contact) for contact in contacts]
     except Exception:
         logger.exception("Failed to fetch contacts.")
-        raise
+        raise HTTPException(status_code=500, detail="Failed to fetch contacts.")
     finally:
         await connection.close()
 
@@ -92,7 +97,7 @@ async def db_get_education(env: Any) -> list[dict[str, Any]]:
         return [dict(school) for school in schools]
     except Exception:
         logger.exception("Failed to fetch education.")
-        raise
+        raise HTTPException(status_code=500, detail="Failed to fetch education.")
     finally:
         await connection.close()
 
@@ -146,29 +151,31 @@ async def db_get_projects(env: Any) -> list[dict[str, Any]]:
         return list(project_values.values())
     except Exception:
         logger.exception("Failed to fetch projects.")
-        raise
+        raise HTTPException(status_code=500, detail="Failed to fetch projects.")
     finally:
         await connection.close()
 
 
-async def db_get_snippets(env: Any) -> list[dict[str, Any]]:
+async def db_get_experience(env: Any) -> list[dict[str, Any]]:
     """
-    Return all code snippets, ordered by priority.
+    Return all work experience, ordered by priority.
     """
     connection = await get_connection(env.HYPERDRIVE)
 
     try:
-        # Get all snippets.
-        snippets = await connection.fetch(
-            "SELECT snippets.id as id, snippets.name as name, "
-            "snippets.snippet_path as snippet_path, snippets.language as language, "
-            "snippets.priority as priority FROM snippets "
-            "ORDER BY snippets.priority, snippets.id"
+        # Get all experience.
+        experience = await connection.fetch(
+            "SELECT experience.id as id, experience.name as name, "
+            "experience.title as title, experience.icon as icon, "
+            "experience.start_date as start_date, experience.end_date as end_date, "
+            "experience.bulleted_description as bulleted_description, "
+            "experience.priority as priority FROM experience "
+            "ORDER BY experience.priority, experience.id"
         )
 
-        return [dict(snippet) for snippet in snippets]
+        return [dict(job) for job in experience]
     except Exception:
-        logger.exception("Failed to fetch snippets.")
-        raise
+        logger.exception("Failed to fetch experience.")
+        raise HTTPException(status_code=500, detail="Failed to fetch experience.")
     finally:
         await connection.close()
