@@ -3,6 +3,7 @@ from fastapi import APIRouter, Request
 
 # Custom module imports.
 from schemas import SkillOut, ContactOut, EducationOut, GeneralOut
+from internal import db_get_skills
 
 router = APIRouter()
 

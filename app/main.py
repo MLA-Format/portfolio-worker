@@ -1,10 +1,13 @@
 # Library imports.
 from fastapi import FastAPI, Request
 from workers import asgi
-import asyncpg
+import logging
 
 # Module imports.
 from routers import router
+
+# Creating logger.
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 app.include_router(router)
