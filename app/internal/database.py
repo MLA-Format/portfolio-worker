@@ -173,3 +173,25 @@ async def db_get_projects(env):
         raise
     finally:
         await connection.close()
+
+
+async def db_get_snippets(env):
+    """
+    Return all code snippets, ordered by priority.
+    """
+    connection = await get_connection(env.HYPERDRIVE)
+
+    try:
+        snippets = await connection.fetch(
+            "SELECT snippets.id as id, snippets.name as name, "
+            "snippets.snippet_path as snippet_path, snippets.language as language, "
+            "snippets.priority as priority FROM snippets "
+            "ORDER BY snippets.priority NULLS LAST, snippets.id"
+        )
+
+        return [dict(snippet) for snippet in snippets]
+    except Exception as error:
+        logger.exception(f"Failed to fetch snippets: {error}")
+        raise
+    finally:
+        await connection.close()

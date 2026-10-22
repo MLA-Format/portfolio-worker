@@ -62,5 +62,13 @@ class ProjectOut(BaseModel):
     contacts: list[ProjectContactOut]
 
 
+class SnippetOut(BaseModel):
+    id: int
+    name: str
+    snippet_path: str
+    language: str
+    priority: int | None
+
+
 class GeneralOut(BaseModel):
     about_me: str
