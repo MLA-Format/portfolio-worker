@@ -3,7 +3,7 @@ from fastapi import APIRouter, Request
 
 # Custom module imports.
 from schemas import SkillOut, ContactOut, EducationOut, GeneralOut
-from internal import db_get_skills, db_get_contacts
+from internal import db_get_skills, db_get_contacts, db_get_education
 
 router = APIRouter()
 
@@ -13,12 +13,12 @@ async def root() -> GeneralOut:
 
 @router.get("/skills")
 async def get_skills(req: Request):
-    raise HTTPException(status_code=501, detail="Awaiting implementation.")
+    return await db_get_skills(req.scope["env"])
 
 @router.get("/contacts")
 async def get_contacts(req: Request) -> list[ContactOut]:
     return await db_get_contacts(req.scope["env"])
 
 @router.get("/education")
-async def get_education(req: Request):
-    raise HTTPException(status_code=501, detail="Awaiting implementation.")
+async def get_education(req: Request) -> list[EducationOut]:
+    return await db_get_education(req.scope["env"])
