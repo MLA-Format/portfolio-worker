@@ -14,7 +14,7 @@ async def root() -> GeneralOut:
 
 
 @router.get("/skills")
-async def get_skills(req: Request) -> list[SkillsOut]:
+async def get_skills(req: Request) -> list[SkillOut]:
     return await db_get_skills(req.scope["env"])
 
 
