@@ -59,6 +59,7 @@ class ProjectOut(BaseModel):
     start_date: date
     end_date: date | None
     description: str | None
+    bulleted_description: list[str]
     image: str | None
     priority: int | None
     skills: list[ProjectSkillOut]

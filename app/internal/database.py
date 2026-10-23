@@ -121,7 +121,9 @@ async def db_get_projects(env: Any) -> list[dict[str, Any]]:
         projects = await connection.fetch(
             "SELECT projects.id as id, projects.name as name, "
             "projects.start_date as start_date, projects.end_date as end_date, "
-            "projects.description as description, projects.image as image, "
+            "projects.description as description, "
+            "projects.bulleted_description as bulleted_description, "
+            "projects.image as image, "
             "projects.priority as priority FROM projects "
             "ORDER BY projects.priority, projects.id"
         )
