@@ -5,6 +5,6 @@
 - [ ] Implement CORS logic to prevent external API calls.
 - [ ] Look into enabling docs feature of FastAPI.
 
-Bug fixes:
+Fixes:
 - [Y] Instead of returning blank, raise HTTP exceptions.
 - [Y] Use order in all SQL statements for priorities.
