@@ -63,7 +63,6 @@ class ExperienceOut(BaseModel):
     id: int
     name: str
     title: str
-    icon: str | None
     start_date: date
     end_date: date | None
     priority: int | None

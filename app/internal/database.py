@@ -166,7 +166,7 @@ async def db_get_experience(env: Any) -> list[dict[str, Any]]:
         # Get all experience.
         experience = await connection.fetch(
             "SELECT experience.id as id, experience.name as name, "
-            "experience.title as title, experience.icon as icon, "
+            "experience.title as title, "
             "experience.start_date as start_date, experience.end_date as end_date, "
             "experience.priority as priority FROM experience "
             "ORDER BY experience.priority, experience.id"
