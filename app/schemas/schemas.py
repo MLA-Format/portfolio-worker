@@ -66,7 +66,6 @@ class ExperienceOut(BaseModel):
     icon: str | None
     start_date: date
     end_date: date | None
-    bulleted_description: list[str]
     priority: int | None
 
 

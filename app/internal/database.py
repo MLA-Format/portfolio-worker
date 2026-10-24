@@ -168,7 +168,6 @@ async def db_get_experience(env: Any) -> list[dict[str, Any]]:
             "SELECT experience.id as id, experience.name as name, "
             "experience.title as title, experience.icon as icon, "
             "experience.start_date as start_date, experience.end_date as end_date, "
-            "experience.bulleted_description as bulleted_description, "
             "experience.priority as priority FROM experience "
             "ORDER BY experience.priority, experience.id"
         )
