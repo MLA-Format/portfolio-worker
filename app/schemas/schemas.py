@@ -35,13 +35,6 @@ class EducationOut(BaseModel):
     image: str | None
 
 
-class ProjectSkillOut(BaseModel):
-    id: int
-    name: str
-    priority: int | None
-    icon: str | None
-
-
 class ProjectContactOut(BaseModel):
     id: int
     type: Literal["github", "live"]
@@ -60,9 +53,9 @@ class ProjectOut(BaseModel):
     end_date: date | None
     description: str | None
     bulleted_description: list[str]
+    tech_stack: list[str]
     image: str | None
     priority: int | None
-    skills: list[ProjectSkillOut]
     contacts: list[ProjectContactOut]
 
 

@@ -111,29 +111,21 @@ async def db_get_education(env: Any) -> list[dict[str, Any]]:
 
 async def db_get_projects(env: Any) -> list[dict[str, Any]]:
     """
-    Return all projects with their linked skills and optional URL contacts,
-    ordered by priority.
+    Return all projects with their optional URL contacts, ordered by priority.
     """
     connection = await get_connection(env.HYPERDRIVE)
 
     try:
-        # Get all projects, then their skills and contacts, and group them by project.
+        # Get all projects, then their contacts, and group them by project.
         projects = await connection.fetch(
             "SELECT projects.id as id, projects.name as name, "
             "projects.start_date as start_date, projects.end_date as end_date, "
             "projects.description as description, "
             "projects.bulleted_description as bulleted_description, "
+            "projects.tech_stack as tech_stack, "
             "projects.image as image, "
             "projects.priority as priority FROM projects "
             "ORDER BY projects.priority, projects.id"
-        )
-
-        skills = await connection.fetch(
-            "SELECT project_skills.project_id as project_id, skills.id as id, "
-            "skills.name as name, skills.priority as priority, skills.icon as icon "
-            "FROM project_skills JOIN skills "
-            "ON skills.id = project_skills.skill_id "
-            "ORDER BY skills.priority, skills.id"
         )
 
         contacts = await connection.fetch(
@@ -147,12 +139,9 @@ async def db_get_projects(env: Any) -> list[dict[str, Any]]:
         )
 
         project_values = {
-            project["id"]: {**dict(project), "skills": [], "contacts": []}
+            project["id"]: {**dict(project), "contacts": []}
             for project in projects
         }
-
-        for skill in skills:
-            project_values[skill["project_id"]]["skills"].append(dict(skill))
 
         for contact in contacts:
             project_values[contact["project_id"]
